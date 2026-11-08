@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LALUAN AYAT 4D</title>
+<style>
+:root{--ink:#203047;--muted:#65758b;--bg:#f4f7fb;--white:#fff;--blue:#3778d4;--green:#26a269;--orange:#f3a536;--purple:#8b61c9;--pink:#e66b9a;--line:#e4eaf2}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:var(--ink);background:var(--bg)}
+header{background:linear-gradient(120deg,#2866bd,#7758bd);color:white;padding:22px max(18px,calc((100% - 1060px)/2))}
+header h1{margin:0;font-size:clamp(25px,5vw,38px);letter-spacing:.5px}header p{margin:6px 0 0;opacity:.9}
+main{max-width:1060px;margin:22px auto;padding:0 16px 50px}.tabs,.row,.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+button,.btn{border:0;border-radius:12px;padding:11px 15px;font-weight:700;cursor:pointer;background:#e9eff8;color:#28415f}
+button.primary{background:var(--blue);color:#fff}button.dark{background:#243b59;color:#fff}button.ghost{background:white;border:1px solid var(--line)}
+button:disabled{opacity:.45;cursor:not-allowed}
+.card{background:white;border:1px solid var(--line);border-radius:18px;padding:18px;margin:14px 0;box-shadow:0 5px 18px #22334a0a}
+h2{margin:0 0 8px;font-size:22px}h3{margin:0 0 8px}p{line-height:1.55}.muted{color:var(--muted)}.hidden{display:none!important}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+.menu{padding:18px;border-radius:16px;min-height:125px;text-align:left;border:1px solid transparent}
+.menu b{display:block;font-size:19px;margin:6px 0}.menu small{font-size:13px;line-height:1.4;display:block}
+.m1{background:#e7f1ff;color:#24558e}.m2{background:#e6f6ec;color:#216943}.m3{background:#fff2dc;color:#885814}.m4{background:#f1eaff;color:#68429a}.m5{background:#ffeaf2;color:#9b4168}
+input,select{padding:12px;border:1px solid #d7e0eb;border-radius:10px;font:inherit;width:100%;background:white}
+label{font-size:13px;font-weight:700;display:block;margin:10px 0 5px}
+.progress{height:9px;background:#e9eef5;border-radius:99px;overflow:hidden}.progress span{display:block;height:100%;background:linear-gradient(90deg,#3d85df,#27ad83);width:0}
+.tile{border:2px solid #dfe7f0;background:#fff;padding:12px 14px;border-radius:13px;font-weight:700;cursor:pointer}
+.tile.selected{border-color:var(--blue);background:#edf5ff}.tile.used{opacity:.4;pointer-events:none}
+.slot{min-height:54px;border:2px dashed #b8c7d8;border-radius:13px;padding:10px;display:flex;gap:7px;flex-wrap:wrap;align-items:center;background:#fafcff}
+.chip{padding:7px 10px;border-radius:10px;font-weight:700;font-size:14px}.orange{background:#ffe9cb;color:#85500c}.yellow{background:#fff5b9;color:#705900}.green{background:#dff4e5;color:#20653b}.blue{background:#dcecff;color:#24558e}.purple{background:#eee2ff;color:#654098}.pink{background:#ffe1ed;color:#933e65}
+.notice{padding:12px;border-radius:12px;background:#f0f5fb;margin-top:12px}.good{background:#e5f7ed;color:#17633a}.bad{background:#fff0e7;color:#8b451a}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:10px;border-bottom:1px solid var(--line)}th{background:#f5f8fc}
+.kpi{background:#f6f9fd;border-radius:14px;padding:14px}.kpi strong{font-size:26px;display:block}
+@media(max-width:600px){main{margin-top:12px}.card{padding:14px}header{padding:18px}.tabs button{flex:1}}
+</style>
+</head>
+<body>
+<header><h1>🧩 LALUAN AYAT 4D</h1><p>Makmal Pembinaan Ayat Digital · Daripada perkataan kepada ayat lengkap</p></header>
+<main>
+<div class="tabs">
+<button class="primary" id="studentTab" onclick="showRole('student')">🎒 Paparan Murid</button>
+<button id="teacherTab" onclick="showRole('teacher')">📊 Paparan Guru</button>
+</div>
+
+<section id="studentView">
+<div class="card" id="studentHome">
+<h2>Selamat datang, pembina ayat!</h2><p class="muted">Masukkan nama atau kod murid supaya guru boleh melihat rekod latihan pada peranti ini.</p>
+<label>Nama / kod murid</label><input id="studentName" placeholder="Contoh: M01 atau Aina">
+<div class="actions" style="margin-top:12px"><button class="primary" onclick="saveStudent()">Mula belajar</button></div>
+</div>
+<div id="studentMenu" class="hidden">
+<div class="card row" style="justify-content:space-between"><div><b id="helloName">Murid</b><div class="muted" id="studentStats">0 bintang · 0 aktiviti</div></div><button class="ghost" onclick="changeStudent()">Tukar murid</button></div>
+<h2>Pilih misi pembelajaran</h2>
+<div class="grid">
+<button class="menu m1" onclick="startLesson(1)"><span>🔎</span><b>1. KENAL</b><small>Kenal pasti siapa dan perbuatan melalui gambar situasi.</small></button>
+<button class="menu m2" onclick="startLesson(2)"><span>🧱</span><b>2. BINA</b><small>Susun kad untuk membentuk ayat asas.</small></button>
+<button class="menu m3" onclick="startLesson(3)"><span>🌱</span><b>3. KEMBANG</b><small>Tambah maklumat tempat, masa dan cara.</small></button>
+<button class="menu m4" onclick="startLesson(4)"><span>🚀</span><b>4. MERDEKA</b><small>Bina ayat sendiri tanpa kad bantuan.</small></button>
+<button class="menu m5" onclick="startQuiz()"><span>🏆</span><b>5. MISI PAKAR AYAT</b><small>Cabaran ringkas untuk menguji penguasaan.</small></button>
+</div></div>
+<div id="lesson" class="hidden"></div>
+</section>
+
+<section id="teacherView" class="hidden">
+<div class="card"><h2>📊 Papan pemuka guru</h2><p class="muted">Rekod disimpan pada pelayar/peranti ini sahaja. Gunakan eksport CSV untuk menyimpan salinan data kajian tindakan.</p>
+<div class="grid">
+<div class="kpi"><span class="muted">Murid direkodkan</span><strong id="kStudents">0</strong></div>
+<div class="kpi"><span class="muted">Aktiviti selesai</span><strong id="kActivities">0</strong></div>
+<div class="kpi"><span class="muted">Purata markah</span><strong id="kAverage">—</strong></div>
+</div>
+<div class="actions" style="margin:14px 0"><button class="primary" onclick="exportCSV()">⬇ Eksport CSV</button><button class="ghost" onclick="refreshTeacher()">Muat semula</button><button class="ghost" onclick="print()">Cetak laporan</button></div>
+<div style="overflow-x:auto"><table><thead><tr><th>Nama/kod</th><th>Aktiviti</th><th>Skor terbaik</th><th>Bintang</th><th>Tarikh terkini</th></tr></thead><tbody id="records"><tr><td colspan="5" class="muted">Belum ada rekod.</td></tr></tbody></table></div>
+</div>
+<div class="card"><h3>Instrumen pemerhatian guru</h3><p class="muted">Tandakan semasa murid menjalankan aktiviti. Borang ini boleh dicetak dan dilengkapkan secara manual.</p>
+<div id="checklist"></div><button class="ghost" onclick="print()">Cetak senarai semak</button></div>
+<div class="card"><h3>Peringatan pengumpulan data</h3><ul><li>Jalankan ujian pra dan pasca menggunakan set gambar yang setara.</li><li>Ujian pasca perlu dibuat tanpa kad bantuan.</li><li>Rekodkan hasil sebenar; jangan anggap skor latihan aplikasi sebagai bukti tunggal penguasaan.</li><li>Gunakan kod murid dan elakkan memaparkan maklumat peribadi dalam laporan.</li></ul></div>
+</section>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+let current="",stage=0,task=0,selected=[],quizMode=false,quizScore=0,lessonCorrect=0,counted=false;
+const dataKey="laluanAyat4D_records_v1";
+function getData(){try{return JSON.parse(localStorage.getItem(dataKey)||"{}")}catch(e){return {}}}
+function putData(d){localStorage.setItem(dataKey,JSON.stringify(d))}
+function showRole(role){
+ $("studentView").classList.toggle("hidden",role!=="student");$("teacherView").classList.toggle("hidden",role!=="teacher");
+ $("studentTab").className=role==="student"?"primary":"";$("teacherTab").className=role==="teacher"?"primary":"";
+ if(role==="teacher")refreshTeacher();
+}
+function saveStudent(){let n=$("studentName").value.trim();if(!n){alert("Masukkan nama atau kod murid dahulu.");return}current=n;let d=getData();d[n]??={activities:0,stars:0,best:0,last:""};putData(d);homeStudent()}
+function homeStudent(){$("studentHome").classList.add("hidden");$("studentMenu").classList.remove("hidden");$("lesson").classList.add("hidden");$("helloName").textContent="Hai, "+current+"!";let r=getData()[current]||{};$("studentStats").textContent=(r.stars||0)+" bintang · "+(r.activities||0)+" aktiviti selesai"}
+function changeStudent(){$("studentHome").classList.remove("hidden");$("studentMenu").classList.add("hidden");$("lesson").classList.add("hidden");$("studentName").value=current}
+const lessons={
+1:{title:"KENAL · Detektif gambar",desc:"Pilih jawapan yang menunjukkan SIAPA dan BUAT APA.",items:[
+{q:"Siapakah yang menyiram pokok?",opts:["Ali","pokok bunga","di taman"],a:"Ali",hint:"Cari orang yang melakukan perbuatan."},
+{q:"Apakah perbuatan dalam situasi ini?",opts:["membaca","perpustakaan","buku cerita"],a:"membaca",hint:"Cari kata kerja."},
+{q:"Dalam ayat 'Ibu memasak nasi', siapakah subjek?",opts:["Ibu","memasak","nasi"],a:"Ibu",hint:"Subjek ialah orang atau perkara yang diperkatakan."}]},
+2:{title:"BINA · Susun kad ayat",desc:"Tekan kad mengikut urutan untuk membina ayat yang betul.",items:[
+{q:"Bina ayat: Ali makan nasi.",words:["nasi","Ali","makan"],a:["Ali","makan","nasi"]},
+{q:"Bina ayat: Siti membaca buku.",words:["membaca","Siti","buku"],a:["Siti","membaca","buku"]},
+{q:"Bina ayat: Murid menyapu kelas.",words:["kelas","Murid","menyapu"],a:["Murid","menyapu","kelas"]}]},
+3:{title:"KEMBANG · Tambah maklumat",desc:"Pilih maklumat yang sesuai untuk meluaskan ayat asas.",items:[
+{q:"Ayat asas: Ali membaca buku. Pilih keterangan tempat yang sesuai.",opts:["di perpustakaan","dengan kasut","kerana lapar"],a:"di perpustakaan",hint:"Fikirkan lokasi aktiviti membaca."},
+{q:"Ayat asas: Ibu memasak nasi. Pilih keterangan masa.",opts:["pada waktu petang","di atas basikal","dengan pensel"],a:"pada waktu petang",hint:"Keterangan masa menjawab soalan bila."},
+{q:"Ayat asas: Adik menulis. Pilih keterangan cara.",opts:["dengan kemas","di kantin","semalam"],a:"dengan kemas",hint:"Keterangan cara menjawab soalan bagaimana."}]},
+4:{title:"MERDEKA · Ayat kendiri",desc:"Lengkapkan ayat dengan menambah maklumat yang sesuai. Tulis ayat penuh.",items:[
+{q:"Ayat asas: Farah menyiram bunga.",base:"Farah menyiram bunga",placeholder:"Contoh: Farah menyiram bunga di halaman rumah pada waktu pagi."},
+{q:"Ayat asas: Murid bermain bola.",base:"Murid bermain bola",placeholder:"Tulis ayat yang lebih lengkap."},
+{q:"Ayat asas: Ayah membasuh kereta.",base:"Ayah membasuh kereta",placeholder:"Tulis ayat yang lebih lengkap."}]}
+};
+function startLesson(s){stage=s;task=0;selected=[];quizMode=false;lessonCorrect=0;counted=false;renderTask()}
+function renderTask(){
+ const l=lessons[stage],it=l.items[task];counted=false;$("lesson").classList.remove("hidden");
+ $("lesson").innerHTML=`<div class="card"><div class="row" style="justify-content:space-between"><span class="muted">${l.title}</span><button class="ghost" onclick="homeStudent()">← Menu</button></div><h2>${l.desc}</h2><div class="progress"><span style="width:${(task/l.items.length)*100}%"></span></div><p class="muted">Aktiviti ${task+1} daripada ${l.items.length}</p><h3>${it.q}</h3><div id="answerArea"></div><div id="feedback"></div><div class="actions" style="margin-top:15px"><button class="primary" id="checkBtn" onclick="checkAnswer()">Semak jawapan</button><button class="ghost hidden" id="nextBtn" onclick="nextTask()">Seterusnya →</button></div></div>`;
+ let a=$("answerArea");
+ if(stage===2){a.innerHTML=`<div class="slot" id="wordSlot"><span class="muted">Kad pilihan akan muncul di sini apabila dipilih.</span></div><p><b>Kad perkataan:</b></p><div class="row" id="wordChoices"></div><button class="ghost" onclick="selected=[];renderTask()">Susun semula</button>`;it.words.forEach(w=>{let b=document.createElement("button");b.className="tile";b.textContent=w;b.onclick=()=>{if(!selected.includes(w)){selected.push(w);renderWords()}};$("wordChoices").appendChild(b)});renderWords()}
+ else if(stage===4){a.innerHTML=`<p><b>Ayat asas:</b> ${it.base}.</p><label>Tulis ayat yang telah diperluas</label><input id="freeAnswer" placeholder="${it.placeholder}">`}
+ else{a.innerHTML=`<div class="grid">${it.opts.map((o,i)=>`<button class="tile" onclick="pickOption(this,${i})">${o}</button>`).join("")}</div>`}
+}
+function renderWords(){$("wordSlot").innerHTML=selected.length?selected.map((w,i)=>`<span class="chip ${["orange","yellow","green"][i%3]}">${w}</span>`).join(""):'<span class="muted">Pilih kad perkataan mengikut urutan.</span>'}
+let picked=null;
+function pickOption(el,i){document.querySelectorAll("#answerArea .tile").forEach(x=>x.classList.remove("selected"));el.classList.add("selected");picked=i}
+function checkAnswer(){
+ const it=lessons[stage].items[task];let ok=false,msg="";
+ if(stage===1||stage===3){ok=picked!==null&&it.opts[picked]===it.a;msg=ok?"Tepat! Bagus.":"Belum tepat. "+(it.hint||"Cuba fikir semula dan pilih jawapan yang sesuai.");}
+ if(stage===2){ok=JSON.stringify(selected)===JSON.stringify(it.a);msg=ok?"Susunan ayat betul!":"Semak semula susunan subjek, perbuatan dan objek."}
+ if(stage===4){let v=$("freeAnswer").value.trim();let base=it.base.toLowerCase();let words=v.split(/\s+/).filter(Boolean);ok=v.length>base.length+8&&v.toLowerCase().includes(base.toLowerCase())&&words.length>=6;msg=ok?"Ayat mempunyai peluasan. Semak semula tatabahasa dan kesesuaian maklumat.":"Cuba tambah sekurang-kurangnya satu maklumat yang sesuai seperti tempat, masa atau cara. Pastikan ayat asas dikekalkan."}
+ $("feedback").innerHTML=`<div class="notice ${ok?"good":"bad"}">${msg}</div>`;
+ if(ok){if(!counted){lessonCorrect++;counted=true;}$("checkBtn").disabled=true;$("nextBtn").classList.remove("hidden");}else if(stage===4){$("nextBtn").classList.remove("hidden");}
+}
+function nextTask(){task++;picked=null;selected=[];if(task>=lessons[stage].items.length){finishLesson();return}renderTask()}
+function finishLesson(){
+ let d=getData();let r=d[current]||{activities:0,stars:0,best:0,last:""};let score=Math.round(lessonCorrect/lessons[stage].items.length*100);let earned=score>=80?3:score>=50?2:1;r.activities++;r.stars+=earned;r.best=Math.max(r.best,score);r.last=new Date().toLocaleString("ms-MY");r.logs??=[];r.logs.push({activity:lessons[stage].title,score:score,date:r.last});d[current]=r;putData(d);
+ $("lesson").innerHTML=`<div class="card" style="text-align:center"><div style="font-size:48px">🌟</div><h2>Tahniah, ${current}!</h2><p>Kamu telah menyelesaikan ${lessons[stage].title}.</p><h3>Skor latihan: ${score}% · +${earned} bintang</h3><button class="primary" onclick="homeStudent()">Kembali ke menu</button></div>`;
+}
+function startQuiz(){alert("Misi Pakar Ayat: Lengkapkan ujian kendiri pada helaian guru atau gunakan aktiviti MERDEKA sebagai latihan tanpa bantuan. Ujian pra/pasca formal disediakan berasingan supaya guru boleh menilai secara konsisten.");}
+function refreshTeacher(){
+ let d=getData(),names=Object.keys(d),acts=names.reduce((s,n)=>s+(d[n].activities||0),0),stars=names.reduce((s,n)=>s+(d[n].stars||0),0);
+ $("kStudents").textContent=names.length;$("kActivities").textContent=acts;$("kAverage").textContent=acts?Math.round(stars/(acts*2)*100)+"%":"—";
+ $("records").innerHTML=names.length?names.map(n=>`<tr><td>${escapeHtml(n)}</td><td>${d[n].activities||0}</td><td>${d[n].best||"—"}</td><td>${d[n].stars||0}</td><td>${escapeHtml(d[n].last||"—")}</td></tr>`).join(""):'<tr><td colspan="5" class="muted">Belum ada rekod.</td></tr>';
+}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function exportCSV(){let d=getData(),rows=[["Nama/kod","Aktiviti selesai","Bintang","Tarikh terkini"],...Object.keys(d).map(n=>[n,d[n].activities||0,d[n].stars||0,d[n].last||""])];let csv=rows.map(r=>r.map(x=>'"'+String(x).replace(/"/g,'""')+'"').join(",")).join("\n");let a=document.createElement("a");a.href=URL.createObjectURL(new Blob(["\ufeff"+csv],{type:"text/csv;charset=utf-8"}));a.download="rekod_laluan_ayat_4d.csv";a.click();URL.revokeObjectURL(a.href)}
+$("checklist").innerHTML=["Murid mengenal pasti subjek.","Murid mengenal pasti predikat/perbuatan.","Murid menyusun kad mengikut urutan.","Murid membina ayat asas yang lengkap.","Murid menambah maklumat yang relevan.","Murid menulis ayat tanpa bantuan kad."].map((x,i)=>`<label style="font-weight:500"><input type="checkbox" style="width:auto;margin-right:8px">${x}</label>`).join("");
+</script>
+</body></html>
